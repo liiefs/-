@@ -1,0 +1,38 @@
+//#include <iostream>
+//#include <stack>
+//#include <string>
+//using namespace std;
+//signed main() {
+//    int z;
+//    cin >> z;
+//    while (z--) {
+//        stack<unsigned long long int> p;
+//        int zz;
+//        cin >> zz;
+//        while (zz--) {
+//            string a;
+//            cin >> a;
+//            if (a == "push") {
+//                unsigned long long x;
+//                cin >> x;
+//                p.push(x);
+//            }
+//            else if (a == "pop") {
+//                if (!p.empty()) {
+//                    p.pop();
+//                }
+//                else cout << "Empty\n";
+//            }
+//            else if (a == "query") {
+//                if (!p.empty()) {
+//                    cout << p.top() <<'\n';
+//                }
+//                else cout << "Anguei!\n" ;
+//            }
+//            else if (a == "size") {
+//                cout << p.size() <<'\n';
+//            }
+//        }
+//    }
+//    return 0;
+//}
