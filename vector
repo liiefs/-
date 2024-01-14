@@ -1,0 +1,32 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+vector<int>z[100010];
+int n, m;
+bool zz[100010];
+int main() {
+	cin >> n >> m;
+	while (m--) {
+		int x, y;
+		cin >> x >> y;
+		z[x].push_back(y);
+		zz[y] = true;
+	}
+	int root = 0;
+	int ans = 0,anss=0;
+	for (int i = 1; i <= n; i++) {
+		if (zz[i] == false)root = i;
+		int j = z[i].size();
+		if (ans < j) {
+			ans = j;
+			anss = i;
+		}
+	}
+	cout << root << endl << anss << endl;
+	sort(z[anss].begin(), z[anss].end());
+	for (auto it : z[anss]) {
+		cout << it << " ";
+	}
+	return 0;
+}
