@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+int n, z[130][130], zz[130][130],ans;
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <=n; j++) {
+			cin >> z[i][j];
+			if (i == 1)
+				zz[i][j] = zz[i][j - 1] + z[i][j];
+			else if (j == 1)
+				zz[i][j] = zz[i - 1][j] + z[i][j];
+			else zz[i][j] = zz[i][j - 1]+zz[i-1][j]-zz[i-1][j-1] + z[i][j];
+		}
+	}
+	for (int x1 = 1; x1 <= n; x1++)
+		for (int y1 = 1; y1 <= n; y1++)
+			for (int x2 = x1; x2 <= n; x2++)
+				for (int y2 = y1; y2 <= n; y2++)
+					ans = max(ans, zz[x2][y2] - zz[x2][y1 - 1] - zz[x1 - 1][y2] + zz[x1 - 1][y1 - 1]);
+	cout << ans;
+	return 0;
+}
+
+#include<iostream>
+using namespace std;
+#define int long long
+int a, b,n,m,s, c[1001011], d[1000101];
+signed main() {
+	cin >> a;
+	for (int i = 1; i <= a; i++) {
+		cin >> c[i];
+		d[i] = d[i - 1] + c[i];
+	}
+	cin >> b;
+	for (int i = 1; i <= b; i++) {
+		cin >> m >> n;
+		 s = d[n] - d[m-1];
+		cout<< s << endl;
+	}
+	return 0;
+}
+
+#include<iostream>
+using namespace std;
+int n, m, z[1001][1001], zz[1001][1001], c,ans=-0x7fffffff,x,y;
+int main() {
+	cin >> n >> m >> c;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			cin >> z[i][j];
+			zz[i][j] = zz[i - 1][j] + zz[i][j - 1] - zz[i - 1][j - 1] + z[i][j];
+		}
+	}
+	for (int i = c; i <= n; ++i)
+		for (int j = c; j <= m; ++j)
+		{
+			if (zz[i][j] - zz[i - c][j] - zz[i][j - c] +zz[i - c][j - c] > ans)
+			{
+				ans = zz[i][j] + zz[i - c][j - c] - zz[i - c][j] - zz[i][j - c];
+				x = i - c+1 ; y = j - c+1;
+			}
+		}
+	cout << x << " " << y;
+}
+
