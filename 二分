@@ -1,0 +1,87 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int n, c,z[100001];
+bool check(int x) {
+	int num = 0;
+	int r1 = z[1];
+	for (int i = 2; i <= n; i++) {
+		if (z[i] - r1 < x)num++;
+		else r1 = z[i];
+		if (num > n - c)return 0;
+	}
+	return 1;
+}
+int main() {
+	cin >> n>>c;
+	for (int i = 1; i <= n; i++) {
+		cin >> z[i];
+	}
+	sort(z + 1, z + 1 + n);
+	int r1 = 1, r2 = z[n] - z[1];
+	while(r1 < r2) {
+		int z = (r1 + r2+1) / 2;
+		if (check(z))r1 = z;
+		else r2 = z - 1;
+	}
+	cout << r1;
+	return 0;
+}
+
+#include<iostream>
+#define int long long
+using namespace std;
+int n, m;
+int z[1000010];
+bool check(int x) {
+	int sum=0;
+	for (int i = 1; i <= n; i++) {
+		if(z[i]-x>0)
+		sum += z[i] - x;
+	}
+	if (m > sum)return 1;
+	else return 0;
+}
+signed main() {
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		cin >> z[i];
+	}
+	int r1 = 0, r2 = 400000;
+	while (r1 < r2) {
+		int mid = (r1 + r2+1) / 2;
+		if (check(mid))r2 = mid-1;
+		else r1 = mid;
+	}
+	cout << r2;
+	return 0;
+}
+
+#include<iostream>
+#include<algorithm>
+#define int long long
+using namespace std;
+signed main()
+{
+	int x,cn=0,m,a[100001],n,i,b[100001],l,r,mid;
+	cin>>n>>m;
+	for(i=1;i<=n;i++)
+	cin>>a[i];
+	sort(a+1,a+n+1);
+	for(i=1;i<=m;i++)
+	cin>>b[i];
+	for(i=1;i<=m;i++)
+	{
+		l=1;r=n;
+		while(l<r-1)
+		{
+			mid=(l+r)/2;
+			if(b[i]>=a[mid])
+			l=mid;
+			else r=mid;
+		}
+		x=abs(b[i]-a[l])<abs(a[r]-b[i])?abs(b[i]-a[l]):abs(a[r]-b[i]);//比与学生估值高的和低的两个学校的录取分数线进行相减取绝对值，作为该学生的不满意度
+		cn+=x;
+	}
+	cout<<cn;
+}
