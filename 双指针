@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int n, m;
+int z[1000001], zz[1000001];
+int main() {
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		cin >> z[i];
+	}
+	for (int i = 1; i <= m; i++) {
+		cin >> zz[i];
+	}
+	int r1 = 1,r2=1;
+	while (r1 <= m) {
+		while (zz[r1] != z[r2])r1++;
+		r2++;
+        r1++;
+	}
+	if (r2>=n)cout << "Yes";
+	else cout << "No";
+	return 0;
+}
