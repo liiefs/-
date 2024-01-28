@@ -1,0 +1,84 @@
+string a,b;
+int ne[1000010];
+void pre_kmp()
+{
+    for(int i=2,j=0;a[i];i++)
+    {
+        while(j && a[i]!=a[j+1])j=ne[j];
+        if(a[i]==a[j+1])j++;
+        ne[i]=j;
+    }
+}
+void kmp()
+{
+    for(int i=1,j=0;b[i];i++)
+    {
+        while(j && b[i]!=a[j+1])j=ne[j];
+        if(b[i]==a[j+1])j++;
+        if(j==a.size()-1)
+        {
+            cout<<i-j+1<<endl;
+            j=ne[j];
+        }
+    }
+}
+int main()
+{
+    cin>>a>>b;
+    a=" "+a;
+    b=" "+b;
+    pre_kmp();
+    kmp();
+    return 0;
+}
+
+
+int trie[100010][30];
+int idx=0;
+void charu(string a)
+{
+    int p=0;
+    for(int i=0;a[i];i++)
+    {
+        int x=a[i]-'a';
+        if(!trie[p][x])
+        {
+            trie[p][x]=++idx;
+        }
+        p=trie[p][x];
+    }
+}
+void find(string b)
+{
+    int p=0;
+    for(int i=0;b[i];i++)
+    {
+        int x=b[i]-'a';
+        if(!trie[p][x])
+        {
+            
+        }
+    }
+}
+
+int p[1000010];
+void init()
+{
+    for(int i=1;i<=n;i++)p[i]=i;
+}
+int find(int x)
+{
+    if(p[x]!=x)
+    {
+        p[x]=find(p[x]);
+    }
+    return p[x];
+}
+void do_p(int a,int b)
+{
+    if(a>b)swap(a,b);
+    if(find(a)!=find(b))
+    {
+        p[find(b)]=find(a);
+    }
+}
